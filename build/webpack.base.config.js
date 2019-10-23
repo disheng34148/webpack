@@ -2,6 +2,7 @@ const path = require('path');
 const resolve = dir => path.resolve(__dirname, '../src/', dir);
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');// 从js文件中提取css
 const isDev = process.env.NODE_ENV === 'development';
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: resolve('index.js'),
@@ -74,5 +75,13 @@ module.exports = {
                 }
             }
         ]
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: resolve('../public/index.html'),
+            inject: 'body',
+            hash: isDev ? false : true // development要取消hash
+        })
+    ]
 }

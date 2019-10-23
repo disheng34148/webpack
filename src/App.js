@@ -5,9 +5,7 @@ import Login from '@pages/Login';
 class App extends Component {
     render() {
         return (
-            <div>
-                <Login></Login>
-            </div>
+            <Login></Login>
         );
     }
 }

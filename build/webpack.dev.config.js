@@ -11,6 +11,7 @@ module.exports = merge(base, {
         contentBase: resolve('../dist'),
         open: true,
         port: 8080,
+        compress: true,
         overlay: true,
         hot: true,
     },

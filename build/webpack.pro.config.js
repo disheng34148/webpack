@@ -2,7 +2,6 @@ const path = require('path');
 const merge = require('webpack-merge');
 const resolve = dir => path.resolve(__dirname, '../src/', dir);
 const base = require('./webpack.base.config.js');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -14,10 +13,6 @@ module.exports = merge(base, {
     devtool: 'cheap-module-source-map',
     plugins: [
         new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: resolve('../public/index.html')
-        }),
         new MiniCssExtractPlugin({
             filename: 'css/[name].css'
         }),
