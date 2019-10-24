@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button } from 'antd';
 import '@style/login.scss';
 
 class Login extends Component {
@@ -11,7 +11,7 @@ class Login extends Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                console.log(this.props);
             }
         });
     };
@@ -23,7 +23,7 @@ class Login extends Component {
                 <Form onSubmit={this.handleSubmit} className="login-form">
                     <Form.Item>
                         {getFieldDecorator('username', {
-                            rules: [{ required: true, message: 'Please input your username!' }],
+                            rules: [{ required: true, whitespace: true, pattern: /^123456$/, message: '账号错误' }],
                         })(
                             <Input
                                 prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -33,7 +33,7 @@ class Login extends Component {
                     </Form.Item>
                     <Form.Item>
                         {getFieldDecorator('password', {
-                            rules: [{ required: true, message: 'Please input your Password!' }],
+                            rules: [{ required: true, whitespace: true, pattern: /^123456$/, message: '密码错误' }],
                         })(
                             <Input
                                 prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}

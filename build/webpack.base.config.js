@@ -13,7 +13,8 @@ module.exports = {
     // externals里面库不打包
     externals: {
         'react': 'React',
-        'react-dom': 'ReactDOM'
+        'react-dom': 'ReactDOM',
+        'react-router-dom': 'ReactRouterDOM'
     },
     resolve: {
         extensions: ['.js', '.jsx'],

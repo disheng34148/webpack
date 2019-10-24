@@ -8,7 +8,16 @@
                 "libraryName": "antd",
                 "libraryDirectory": "es",
                 "style": "css"
-            }
+            },
+            "antd"
+        ],
+        [
+            "import",
+            {
+                "libraryName": "react-router-dom",
+                "libraryDirectory": "es"
+            },
+            "react-router-dom"
         ]
     ]
 }
