@@ -43,7 +43,12 @@ module.exports = {
             {
                 test: /\.(sass|scss)$/,
                 use: [
-                    isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    isDev ? 'style-loader' : {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            publicPath: '/' // 解决打包后scss中引入图片路径问题
+                        }
+                    },
                     'css-loader',
                     'postcss-loader',
                     'sass-loader'

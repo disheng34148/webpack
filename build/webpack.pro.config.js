@@ -14,7 +14,7 @@ module.exports = merge(base, {
     plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: 'css/[name].css'
+            filename: 'css/[name].[hash:8].css'
         }),
         new OptimizeCssAssetsPlugin(),
         new BundleAnalyzerPlugin(),
