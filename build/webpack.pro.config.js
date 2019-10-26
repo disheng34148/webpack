@@ -7,6 +7,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;// 查看项目打包体积
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');// 压缩css
+const copyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = merge(base, {
     mode: 'production',
@@ -20,5 +21,9 @@ module.exports = merge(base, {
         new BundleAnalyzerPlugin(),
         // IgnorePlugin可以忽略第三方库的某个目录下的内容
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),// 忽略moment的locale(语言包)目录下的内容, 减小打包体积
+        new copyWebpackPlugin([{
+            from: resolve('../public/favicon.ico'),
+            to: resolve('../dist/favicon.ico')
+        }])
     ]
 })
