@@ -12,6 +12,7 @@ class Login extends Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 console.log(this.props);
+                this.props.history.push('/');
             }
         });
     };

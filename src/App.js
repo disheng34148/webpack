@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import '@style/reset.scss';
-import Login from '@pages/Login';
+import Header from '@com/Header';
 
 class App extends Component {
     render() {
         return (
-            <Login></Login>
+            <div id="views">
+                <Header></Header>
+            </div>
         );
     }
 }

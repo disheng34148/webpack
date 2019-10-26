@@ -22,6 +22,7 @@ module.exports = {
             '@': resolve('assets/'),
             '@style': resolve('style/'),
             '@pages': resolve('pages/'),
+            '@com': resolve('components/'),
             '@ant-design/icons/lib/dist$': resolve('icon.js') // 优化@ant-design/icons文件，按需引入icon
         }
     },
