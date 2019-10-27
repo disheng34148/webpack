@@ -8,6 +8,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;// 查看项目打包体积
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');// 压缩css
 const copyWebpackPlugin = require('copy-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');// 抽离manifest.json文件
+const CompressionWebpackPlugin = require('compression-webpack-plugin');// 开启gzip压缩 版本问题降到1.1.12
 
 module.exports = merge(base, {
     mode: 'production',
@@ -24,6 +26,26 @@ module.exports = merge(base, {
         new copyWebpackPlugin([{
             from: resolve('../public/favicon.ico'),
             to: resolve('../dist/favicon.ico')
-        }])
-    ]
+        }]),
+        new ManifestPlugin(),
+        new CompressionWebpackPlugin({
+            asset: '[path].gz[query]',
+            algorithm: 'gzip',
+            test: new RegExp('\\.(js|css)$'),
+            threshold: 10240,
+            minRatio: 0.8
+        })
+    ],
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                antd: {
+                    name: 'antd',
+                    test: /[\\/]node_modules[\\/](antd)[\\/]/,
+                    chunks: 'all',
+                    priority: 20
+                }
+            }
+        }
+    }
 })

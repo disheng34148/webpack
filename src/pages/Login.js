@@ -11,8 +11,7 @@ class Login extends Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log(this.props);
-                this.props.history.push('/');
+                this.props.history.push('/')
             }
         });
     };
