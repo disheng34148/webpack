@@ -31,6 +31,8 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 use: 'babel-loader',
+                // loader: 'happypack/loader?id=happy-babel-js',
+                include: resolve(''),
                 exclude: /node_modules/
             },
             {

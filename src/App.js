@@ -12,4 +12,6 @@ class App extends Component {
     }
 }
 
+$('#views').addClass('add_jquery');
+
 export default App;

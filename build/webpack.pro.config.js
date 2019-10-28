@@ -4,12 +4,18 @@ const resolve = dir => path.resolve(__dirname, '../src/', dir);
 const base = require('./webpack.base.config.js');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');// 从js文件中提取css
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;// 查看项目打包体积
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');// 压缩css
-const copyWebpackPlugin = require('copy-webpack-plugin');
+const copyWebpackPlugin = require('copy-webpack-plugin');// 复制资源到指定目录
 const ManifestPlugin = require('webpack-manifest-plugin');// 抽离manifest.json文件
 const CompressionWebpackPlugin = require('compression-webpack-plugin');// 开启gzip压缩 版本问题降到1.1.12
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');// 显示打包时间
+const glob = require('glob');
+const PurifyCSSPlugin = require('purifycss-webpack');// 去除无用的css
+const HappyPack = require('happypack');// 大项目中使用，小项目使用反而构建速度慢
+const os = require('os')
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
 module.exports = merge(base, {
     mode: 'production',
@@ -19,6 +25,11 @@ module.exports = merge(base, {
         new MiniCssExtractPlugin({
             filename: 'css/[name].[hash:8].css'
         }),
+        // new PurifyCSSPlugin({
+        //     paths: glob.sync([
+        //         path.join(__dirname, '../public/index.html')
+        //     ])
+        // }),
         new OptimizeCssAssetsPlugin(),
         new BundleAnalyzerPlugin(),
         // IgnorePlugin可以忽略第三方库的某个目录下的内容
@@ -26,6 +37,9 @@ module.exports = merge(base, {
         new copyWebpackPlugin([{
             from: resolve('../public/favicon.ico'),
             to: resolve('../dist/favicon.ico')
+        },{
+            from: resolve('../static'),
+            to: resolve('../dist/static')// 想不被webpack打包js、css文件要在html里引入，图片不能使用require方式引入
         }]),
         new ManifestPlugin(),
         new CompressionWebpackPlugin({
@@ -34,7 +48,14 @@ module.exports = merge(base, {
             test: new RegExp('\\.(js|css)$'),
             threshold: 10240,
             minRatio: 0.8
-        })
+        }),
+        new ProgressBarPlugin(),
+        // new HappyPack({
+        //     id: 'happy-babel-js',
+        //     loaders: ['babel-loader?cacheDirectory=true'],
+        //     threadPool: happyThreadPool
+        // })
+        
     ],
     optimization: {
         splitChunks: {
