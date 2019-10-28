@@ -38,8 +38,8 @@ module.exports = merge(base, {
             from: resolve('../public/favicon.ico'),
             to: resolve('../dist/favicon.ico')
         },{
-            from: resolve('../static'),
-            to: resolve('../dist/static')// 想不被webpack打包js、css文件要在html里引入，图片不能使用require方式引入
+            from: resolve('../static'),// 想不被webpack打包js、css文件要在html里引入，图片不能使用require方式引入
+            to: resolve('../dist/static')// 路径要用 /static/**
         }]),
         new ManifestPlugin(),
         new CompressionWebpackPlugin({

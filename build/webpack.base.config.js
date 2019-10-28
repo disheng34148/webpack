@@ -59,7 +59,7 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.(png|jpg|jpeg|gif)$/,
+                test: /\.(png|jpg|jpeg|gif|svg)$/,
                 use: {
                     loader: 'url-loader',
                     options: {
@@ -67,7 +67,7 @@ module.exports = {
                         outputPath: 'images/',
                         limit: 8192, //8kb
                         include: resolve('assets/'),
-                        exclude: /node_modules/
+                        exclude: [/node_modules/, resolve('../static/')]
                     }
                 }
             },
