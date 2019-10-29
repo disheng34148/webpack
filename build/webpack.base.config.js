@@ -31,7 +31,7 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 use: 'babel-loader',
-                // loader: 'happypack/loader?id=happy-babel-js',
+                // loader: 'happypack/loader?id=happyBabel',
                 include: resolve(''),
                 exclude: /node_modules/
             },
@@ -40,6 +40,7 @@ module.exports = {
                 use: [
                     isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
                     'css-loader'
+                    // 'happypack/loader?id=happyCss'
                 ]
             },
             {
@@ -52,8 +53,10 @@ module.exports = {
                         }
                     },
                     'css-loader',
+                    // 'happypack/loader?id=happyCss',
                     'postcss-loader',
                     'sass-loader'
+                    // 'happypack/loader?id=happySass'
                 ],
                 include: resolve('style/'),
                 exclude: /node_modules/
