@@ -8,7 +8,6 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');// 从js文件中提取css
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;// 查看项目打包体积
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');// 压缩css
-const copyWebpackPlugin = require('copy-webpack-plugin');// 复制资源到指定目录
 const ManifestPlugin = require('webpack-manifest-plugin');// 抽离manifest.json文件
 const CompressionWebpackPlugin = require('compression-webpack-plugin');// 开启gzip压缩 版本问题降到1.1.12
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');// 显示打包时间
@@ -24,13 +23,6 @@ const webpackConfig = merge(base, {
         new OptimizeCssAssetsPlugin(),
         // IgnorePlugin可以忽略第三方库的某个目录下的内容
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),// 忽略moment的locale(语言包)目录下的内容, 减小打包体积
-        new copyWebpackPlugin([{
-            from: resolve('../public/favicon.ico'),
-            to: resolve('../dist/favicon.ico')
-        },{
-            from: resolve('../static'),// 想不被webpack打包js、css文件要在html里引入，图片不能使用require方式引入
-            to: resolve('../dist/static')// 路径要用 /static/**
-        }]),
         new ManifestPlugin(),
         new ProgressBarPlugin(),
         // new HappyPack({

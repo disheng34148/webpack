@@ -3,6 +3,7 @@ const resolve = dir => path.resolve(__dirname, '../src/', dir);
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');// 从js文件中提取css
 const isDev = process.env.NODE_ENV === 'development';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const copyWebpackPlugin = require('copy-webpack-plugin');// 复制资源到指定目录
 
 module.exports = {
     entry: resolve('index.js'),
@@ -95,6 +96,13 @@ module.exports = {
             template: resolve('../public/index.html'),
             inject: 'body',
             hash: isDev ? false : true // development要取消hash
-        })
+        }),
+        new copyWebpackPlugin([{
+            from: resolve('../public/favicon.ico'),
+            to: resolve('../dist/favicon.ico')
+        },{
+            from: resolve('../static'),// 想不被webpack打包js、css文件要在html里引入，图片不能使用require方式引入
+            to: resolve('../dist/static')// 路径要用 /static/**
+        }]),
     ]
 }
