@@ -8,6 +8,7 @@ module.exports = {
     entry: resolve('index.js'),
     output: {
         filename: 'js/[name].[hash:8].js',
+        chunkFilename: 'chunks/[name].[hash:8].js',
         path: resolve('../dist')
     },
     // externals里面库不打包

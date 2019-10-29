@@ -1,4 +1,5 @@
 const path = require('path');
+const config = require('./config.js');
 const merge = require('webpack-merge');
 const resolve = dir => path.resolve(__dirname, '../src/', dir);
 const base = require('./webpack.base.config.js');
@@ -13,16 +14,14 @@ const CompressionWebpackPlugin = require('compression-webpack-plugin');// 开启
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');// 显示打包时间
 const HappyPack = require('happypack');// 大项目中使用，小项目使用反而构建速度慢
 
-module.exports = merge(base, {
+const webpackConfig = merge(base, {
     mode: 'production',
-    devtool: 'cheap-module-source-map',
     plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: 'css/[name].[hash:8].css'
         }),
         new OptimizeCssAssetsPlugin(),
-        new BundleAnalyzerPlugin(),
         // IgnorePlugin可以忽略第三方库的某个目录下的内容
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),// 忽略moment的locale(语言包)目录下的内容, 减小打包体积
         new copyWebpackPlugin([{
@@ -33,13 +32,6 @@ module.exports = merge(base, {
             to: resolve('../dist/static')// 路径要用 /static/**
         }]),
         new ManifestPlugin(),
-        new CompressionWebpackPlugin({
-            asset: '[path].gz[query]',
-            algorithm: 'gzip',
-            test: new RegExp('\\.(js|css)$'),
-            threshold: 10240,
-            minRatio: 0.8
-        }),
         new ProgressBarPlugin(),
         // new HappyPack({
         //     id: 'happyBabel',
@@ -58,13 +50,43 @@ module.exports = merge(base, {
     optimization: {
         splitChunks: {
             cacheGroups: {
+                vendor: {
+                    name: 'vendor',
+                    test: /[\\/]node_modules[\\/]/,
+                    chunks: 'all',
+                    priority: 9, //权重 eg: 如果vendor的权重高于antd，那最终打包结果不会把antd单独打包
+                },
                 antd: {
                     name: 'antd',
                     test: /[\\/]node_modules[\\/](antd)[\\/]/,
                     chunks: 'all',
-                    priority: 20
+                    priority: 10
                 }
             }
         }
     }
 })
+
+if(config.sourceMap) {
+    webpackConfig.devtool = 'cheap-module-source-map';
+}
+
+if(config.report) {
+    webpackConfig.plugins.push(
+        new BundleAnalyzerPlugin()
+    )
+}
+
+if(config.gzip) {
+    webpackConfig.plugins.push(
+        new CompressionWebpackPlugin({
+            asset: '[path].gz[query]',
+            algorithm: 'gzip',
+            test: new RegExp('\\.(js|css)$'),
+            threshold: 10240,
+            minRatio: 0.8
+        })
+    )
+}
+
+module.exports = webpackConfig;

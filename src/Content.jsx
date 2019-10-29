@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Switch} from 'react-router-dom';
-import List from '@pages/List';
-import Home from '@pages/Home';
+import loadable from './util/loadable';
 
 class Content extends Component {
     render() {
@@ -9,8 +8,8 @@ class Content extends Component {
             <div id="content">
                 <Router>
                     <Switch>
-                        <Route path="/list" component={List}></Route>
-                        <Route path="/home" component={Home}></Route>
+                        <Route path="/list" component={loadable(() => import(/* webpackChunkName: "List" */'@pages/List'))}></Route>
+                        <Route path="/home" component={loadable(() => import(/* webpackChunkName: "Home" */'@pages/Home'))}></Route>
                     </Switch>
                 </Router>
             </div>
