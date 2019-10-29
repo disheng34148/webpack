@@ -1,6 +1,6 @@
 
 module.exports = {
-    report: true,
+    report: false,
     gzip: false,
     sourceMap: false
 }
