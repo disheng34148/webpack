@@ -5,6 +5,10 @@ const merge = require('webpack-merge');
 const resolve = dir => path.resolve(__dirname, '../src/', dir);
 
 module.exports = merge(base, {
+    entry: [
+        'react-hot-loader/patch',
+        resolve('index.js')
+    ],
     mode: 'development',
     devtool: 'cheap-module-eval-source-map',
     devServer: {
@@ -13,7 +17,7 @@ module.exports = merge(base, {
         port: 8080,
         compress: true,
         overlay: true,
-        hot: true,
+        hot: true
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin()

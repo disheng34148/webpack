@@ -10,6 +10,7 @@
                 "style": "css"
             },
             "antd"
-        ]
+        ],
+        "react-hot-loader/babel"
     ]
 }

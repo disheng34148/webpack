@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader/root';
 import React, { Component } from 'react';
 import '@style/reset.scss';
 import Header from '@com/Header';
@@ -19,4 +20,4 @@ class App extends Component {
 }
 
 
-export default App;
+export default hot(App);
