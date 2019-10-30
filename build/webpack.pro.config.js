@@ -19,7 +19,7 @@ const webpackConfig = merge(base, {
     plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: 'css/[name].[hash:8].css'
+            filename: 'css/[name].[contenthash:8].css'
         }),
         new OptimizeCssAssetsPlugin(),
         // IgnorePlugin可以忽略第三方库的某个目录下的内容
