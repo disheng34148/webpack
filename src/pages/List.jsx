@@ -5,7 +5,7 @@ class List extends Component {
         super(props)
     }
     componentWillMount() {
-        console.log(this.props);
+        console.log('list');
     }
 
     render() {

@@ -4,7 +4,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');// 从js文件�
 const isDev = process.env.NODE_ENV === 'development';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const copyWebpackPlugin = require('copy-webpack-plugin');// 复制资源到指定目录
-console.log(resolve('../dist'));
 
 module.exports = {
     entry: {

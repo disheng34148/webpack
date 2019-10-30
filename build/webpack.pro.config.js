@@ -12,6 +12,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');// 抽离manifest.json
 const CompressionWebpackPlugin = require('compression-webpack-plugin');// 开启gzip压缩 版本问题降到1.1.12
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');// 显示打包时间
 const HappyPack = require('happypack');// 大项目中使用，小项目使用反而构建速度慢
+const TerserPlugin = require('terser-webpack-plugin');
 
 const webpackConfig = merge(base, {
     mode: 'production',
@@ -40,6 +41,21 @@ const webpackConfig = merge(base, {
         
     ],
     optimization: {
+        minimizer: [
+            new TerserPlugin({
+                minify: (file, sourceMap) => {
+                    const uglifyJsOptions = {
+                        compress: {drop_console: true}// 去掉console
+                    };
+                    if(sourceMap) {
+                        uglifyJsOptions.sourceMap = {
+                            content: sourceMap
+                        };
+                    };
+                    return require('uglify-js').minify(file, uglifyJsOptions);
+                }
+            })
+        ],
         splitChunks: {
             cacheGroups: {
                 vendor: {
