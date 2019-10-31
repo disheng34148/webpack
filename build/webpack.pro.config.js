@@ -6,12 +6,9 @@ const base = require('./webpack.base.config.js');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');// 从js文件中提取css
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;// 查看项目打包体积
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');// 压缩css
-const ManifestPlugin = require('webpack-manifest-plugin');// 抽离manifest.json文件
-const CompressionWebpackPlugin = require('compression-webpack-plugin');// 开启gzip压缩 版本问题降到1.1.12
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');// 显示打包时间
-const HappyPack = require('happypack');// 大项目中使用，小项目使用反而构建速度慢
+// const HappyPack = require('happypack');// 大项目中使用，小项目使用反而构建速度慢
 const TerserPlugin = require('terser-webpack-plugin');
 
 const webpackConfig = merge(base, {
@@ -24,7 +21,6 @@ const webpackConfig = merge(base, {
         new OptimizeCssAssetsPlugin(),
         // IgnorePlugin可以忽略第三方库的某个目录下的内容
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),// 忽略moment的locale(语言包)目录下的内容, 减小打包体积
-        new ManifestPlugin(),
         new ProgressBarPlugin(),
         // new HappyPack({
         //     id: 'happyBabel',
@@ -79,13 +75,22 @@ if(config.sourceMap) {
     webpackConfig.devtool = 'cheap-module-source-map';
 }
 
+if(config.manifest) {
+    const ManifestPlugin = require('webpack-manifest-plugin');// 抽离manifest.json文件
+    webpackConfig.plugins.push(
+        new ManifestPlugin()
+    )
+}
+
 if(config.report) {
+    const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;// 查看项目打包体积
     webpackConfig.plugins.push(
         new BundleAnalyzerPlugin()
     )
 }
 
 if(config.gzip) {
+    const CompressionWebpackPlugin = require('compression-webpack-plugin');// 开启gzip压缩 版本问题降到1.1.12
     webpackConfig.plugins.push(
         new CompressionWebpackPlugin({
             asset: '[path].gz[query]',

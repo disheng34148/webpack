@@ -2,5 +2,6 @@
 module.exports = {
     report: false,
     gzip: false,
-    sourceMap: false
+    sourceMap: false,
+    manifest: false
 }
