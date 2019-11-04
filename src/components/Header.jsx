@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { Avatar } from 'antd';
 import avator from '@/avator.jpg';
 import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class Header extends Component {
 
     render() {
+        console.log(this.props.name);
         return (
             <header style={headerStyle}>
                 <Avatar size={64} icon="user" src={avator} />
@@ -13,6 +15,10 @@ class Header extends Component {
             </header>
         );
     }
+}
+
+Header.propTypes = {
+    name: PropTypes.string.isRequired
 }
 
 const headerStyle = {

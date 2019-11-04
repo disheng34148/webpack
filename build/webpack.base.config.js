@@ -29,7 +29,8 @@ module.exports = {
             '@pages': resolve('pages/'),
             '@com': resolve('components/'),
             '@ant-design/icons/lib/dist$': resolve('icon.js') // 优化@ant-design/icons文件，按需引入icon
-        }
+        },
+        symlinks: false// 管理多个package.json才使用
     },
     module: {
         rules: [

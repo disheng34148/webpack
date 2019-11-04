@@ -9,7 +9,7 @@ class App extends Component {
     render() {
         return (
             <div id="views">
-                <Header></Header>
+                <Header name="home"></Header>
                 <div id="box">
                     <MenuLeft></MenuLeft>
                     <Content></Content>

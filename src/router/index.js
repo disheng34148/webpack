@@ -8,9 +8,8 @@ export default class RouteConfig extends Component {
         return (
             <Router>
                 <Switch>
-                    <Route exact path="/" component={loadable(() => import(/* webpackChunkName: "Login" */'@pages/Login'))}></Route>
                     <Route path="/login" component={loadable(() => import(/* webpackChunkName: "Login" */'@pages/Login'))}></Route>
-                    <Route path="/home" render={() =>
+                    <Route path="/" render={() =>
                         <App></App>
                     }></Route>
                 </Switch>
