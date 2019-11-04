@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');// 从js文件�
 const isDev = process.env.NODE_ENV === 'development';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const copyWebpackPlugin = require('copy-webpack-plugin');// 复制资源到指定目录
+const config = require('./config.js');
 
 module.exports = {
     entry: {
@@ -34,8 +35,7 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx?$/,
-                use: 'babel-loader',
-                // loader: 'happypack/loader?id=happyBabel',
+                use: config.happypack ? 'happypack/loader?id=happyBabel' : 'babel-loader',
                 include: resolve(''),
                 exclude: /node_modules/
             },
@@ -43,8 +43,7 @@ module.exports = {
                 test: /\.css$/,
                 use: [
                     isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    'css-loader'
-                    // 'happypack/loader?id=happyCss'
+                    config.happypack ? 'happypack/loader?id=happyCss' : 'css-loader'
                 ]
             },
             {
@@ -56,11 +55,9 @@ module.exports = {
                             publicPath: '/' // 解决打包后scss中引入图片路径问题
                         }
                     },
-                    'css-loader',
-                    // 'happypack/loader?id=happyCss',
+                    config.happypack ? 'happypack/loader?id=happyCss' : 'css-loader',
                     'postcss-loader',
-                    'sass-loader'
-                    // 'happypack/loader?id=happySass'
+                    config.happypack ? 'happypack/loader?id=happySass' : 'sass-loader'
                 ],
                 include: resolve('style/'),
                 exclude: /node_modules/

@@ -8,7 +8,6 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');// 从js文件中提取css
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');// 压缩css
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');// 显示打包时间
-// const HappyPack = require('happypack');// 大项目中使用，小项目使用反而构建速度慢
 const TerserPlugin = require('terser-webpack-plugin');
 
 const webpackConfig = merge(base, {
@@ -21,20 +20,7 @@ const webpackConfig = merge(base, {
         new OptimizeCssAssetsPlugin(),
         // IgnorePlugin可以忽略第三方库的某个目录下的内容
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),// 忽略moment的locale(语言包)目录下的内容, 减小打包体积
-        new ProgressBarPlugin(),
-        // new HappyPack({
-        //     id: 'happyBabel',
-        //     loaders: ['babel-loader']
-        // }),
-        // new HappyPack({
-        //     id: 'happyCss',
-        //     loaders: ['css-loader']
-        // }),
-        // new HappyPack({
-        //     id: 'happySass',
-        //     loaders: ['sass-loader']
-        // })
-        
+        new ProgressBarPlugin()
     ],
     optimization: {
         minimizer: [
@@ -50,7 +36,7 @@ const webpackConfig = merge(base, {
                     };
                     return require('uglify-js').minify(file, uglifyJsOptions);
                 }
-            })
+            }),
         ],
         splitChunks: {
             cacheGroups: {
@@ -100,6 +86,25 @@ if(config.gzip) {
             minRatio: 0.8
         })
     )
+}
+
+if(config.happypack) {
+    const HappyPack = require('happypack');// 大项目中使用，小项目使用反而构建速度慢
+    const happypackConfig = [
+        new HappyPack({
+            id: 'happyBabel',
+            loaders: ['babel-loader']
+        }),
+        new HappyPack({
+            id: 'happyCss',
+            loaders: ['css-loader']
+        }),
+        new HappyPack({
+            id: 'happySass',
+            loaders: ['sass-loader']
+        })
+    ]
+    webpackConfig.plugins.push(...happypackConfig);
 }
 
 module.exports = webpackConfig;
