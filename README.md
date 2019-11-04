@@ -1,7 +1,7 @@
 # webpack4 react项目模板(仅供学习，webpack配置文件有注释)
 
 1. 内置antd、支持路由懒加载、scss/sass编译、jsx格式、图片和字体单独打包、gzip压缩、css抽离、es6转es5、打包后删除console、开发环境支持代码修改后浏览器局部刷新
-2. 支持HappyPack代码已注释，如果想体验可以把注释打开
+2. 支持HappyPack代码，如果想体验可以把在config.js里设置happypack: true
 3. 主要是看webpack配置 src里面的内容随意发挥
 
 ## 一. 别名(alias)
