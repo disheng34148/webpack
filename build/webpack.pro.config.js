@@ -9,6 +9,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');// 从js文件�
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');// 压缩css
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');// 显示打包时间
 const TerserPlugin = require('terser-webpack-plugin');
+const lodashWebpackPlugin = require('lodash-webpack-plugin');// 去除未使用的lodash代码
 
 const webpackConfig = merge(base, {
     mode: 'production',
@@ -17,6 +18,8 @@ const webpackConfig = merge(base, {
         new MiniCssExtractPlugin({
             filename: 'css/[name].[contenthash:8].css'
         }),
+        new lodashWebpackPlugin(),
+        new webpack.optimize.ModuleConcatenationPlugin(),// 作用域提升
         new OptimizeCssAssetsPlugin(),
         // IgnorePlugin可以忽略第三方库的某个目录下的内容
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),// 忽略moment的locale(语言包)目录下的内容, 减小打包体积
