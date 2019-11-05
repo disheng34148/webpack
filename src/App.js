@@ -6,6 +6,15 @@ import MenuLeft from '@com/MenuLeft';
 import Content from './Content';
 
 class App extends Component {
+    constructor(props) {
+        super(props)
+    }
+    componentWillMount() {
+        if(!localStorage.getItem('token')) {
+            this.props.history.push('/login')
+        }
+    }
+
     render() {
         return (
             <div id="views">

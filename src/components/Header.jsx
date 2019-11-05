@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
 import { Avatar } from 'antd';
 import avator from '@/avator.jpg';
-import {Link} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class Header extends Component {
+    constructor(props) {
+        super(props)
+    }
+
+    quit = () => {
+        localStorage.clear();
+        this.props.history.push('/login');
+    }
 
     render() {
-        console.log(this.props.name);
         return (
             <header style={headerStyle}>
                 <Avatar size={64} icon="user" src={avator} />
-                <Link to="/login" id="quit">退出</Link>
+                <a href="javascript:;" id="quit" onClick={this.quit}>退出</a>
             </header>
         );
     }
@@ -29,4 +36,4 @@ const headerStyle = {
     'padding': '10px 20px'
 }
 
-export default Header;
+export default withRouter(Header);

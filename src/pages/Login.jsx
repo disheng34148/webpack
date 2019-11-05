@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
 import { Form, Icon, Input, Button } from 'antd';
 import '@style/login.scss';
+const uuidv4 = require('uuid/v4');
 
 class Login extends Component {
     constructor(props) {
         super(props)
     }
 
+    componentWillMount() {
+        if(localStorage.getItem('token')) {
+            this.props.history.push('/home')
+        }
+    }
+
     handleSubmit = e => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
+                localStorage.setItem('token', uuidv4());
                 this.props.history.push('/home')
             }
         });
