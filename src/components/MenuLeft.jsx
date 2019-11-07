@@ -17,9 +17,9 @@ class MenuLeft extends Component {
         return (
             <div style={{ width: 256, float: 'left', background: '#001529', height: '100%' }}>
                 <Menu defaultSelectedKeys={["1"]} defaultOpenKeys={['sub1']} mode="inline" theme="dark" onSelect={this.menuSelect}>
-                    <Menu.Item key="1" path="/home">
+                    <Menu.Item key="1" path="/vip">
                         <Icon type="pie-chart" />
-                        <span>Option 1</span>
+                        <span>会员</span>
                     </Menu.Item>
                     <Menu.Item key="2" path="/list">
                         <Icon type="pie-chart" />

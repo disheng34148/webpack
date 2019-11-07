@@ -10,7 +10,7 @@ class Login extends Component {
 
     componentWillMount() {
         if(localStorage.getItem('token')) {
-            this.props.history.push('/home')
+            this.props.history.push('/vip')
         }
     }
 
@@ -19,7 +19,7 @@ class Login extends Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 localStorage.setItem('token', uuidv4());
-                this.props.history.push('/home')
+                this.props.history.push('/vip')
             }
         });
     };

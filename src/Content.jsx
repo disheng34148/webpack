@@ -8,8 +8,8 @@ class Content extends Component {
             <div id="content">
                 <Router>
                     <Switch>
+                        <Route path="/vip" component={loadable(() => import(/* webpackChunkName: "Vip" */'@pages/Vip'))}></Route>
                         <Route path="/list" component={loadable(() => import(/* webpackChunkName: "List" */'@pages/List'))}></Route>
-                        <Route path="/home" component={loadable(() => import(/* webpackChunkName: "Home" */'@pages/Home'))}></Route>
                     </Switch>
                 </Router>
             </div>

@@ -53,7 +53,7 @@ const webpackConfig = merge(base, {
                     name: 'antd',
                     test: /[\\/]node_modules[\\/](antd)[\\/]/,
                     chunks: 'all',
-                    priority: 10
+                    priority: 11
                 }
             }
         }

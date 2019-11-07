@@ -23,6 +23,9 @@ a#quit {
 }
 #content {
     float: left;
+    width: 100%;
     max-width: calc(100% - 256px);
     height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
 }
