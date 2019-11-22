@@ -12,6 +12,8 @@ class App extends Component {
     componentWillMount() {
         if(!localStorage.getItem('token')) {
             this.props.history.push('/login')
+        } else {
+            this.props.history.push('/vip')
         }
     }
 

@@ -1,34 +1,6 @@
 import React, { Component } from "react";
 import { Table } from "antd";
 
-
-const data = [
-    {
-        key: "0",
-        name: "John Brown",
-        age: 32,
-        address: "New York No. 1 Lake Park"
-    },
-    {
-        key: "1",
-        name: "Jim Green",
-        age: 42,
-        address: "London No. 1 Lake Park"
-    },
-    {
-        key: "2",
-        name: "Joe Black",
-        age: 32,
-        address: "Sidney No. 1 Lake Park"
-    },
-    {
-        key: "3",
-        name: "Disabled User",
-        age: 99,
-        address: "Sidney No. 1 Lake Park"
-    }
-];
-
 const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
         console.log(
@@ -64,17 +36,30 @@ class Vip extends Component {
             {
                 title: "操作",
                 dataIndex: "delete",
-                render: (text, record) => <a href="javascript:;" onClick={() => this.handleDelete(record.key)}>删除</a>
+                render: (text, record) => <a href="javascript:;" onClick={() => this.handleDelete(record.id)}>删除</a>
             }
         ];
         this.state = {
-            dataSource: data
+            dataSource: []
         }
     }
 
-    handleDelete = key => {
+    componentWillMount() {
+        this.getList()
+    }
+
+    getList = async () => {
+        try {
+            const data = await $http('/vip');
+            this.setState({
+                dataSource: data.list
+            })
+        } catch (err) {}
+    }
+
+    handleDelete = id => {
         const dataSource = [...this.state.dataSource];
-        this.setState({ dataSource: dataSource.filter(item => item.key !== key) });
+        this.setState({ dataSource: dataSource.filter(item => item.id !== id) });
     }
 
     render() {
@@ -82,6 +67,7 @@ class Vip extends Component {
         return (
             <>
                 <Table
+                    rowKey="id"
                     rowSelection={rowSelection}
                     columns={this.columns}
                     dataSource={dataSource}
