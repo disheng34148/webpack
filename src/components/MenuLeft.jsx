@@ -21,9 +21,9 @@ class MenuLeft extends Component {
                         <Icon type="pie-chart" />
                         <span>会员</span>
                     </Menu.Item>
-                    <Menu.Item key="2" path="/list">
+                    <Menu.Item key="2" path="/lottery">
                         <Icon type="pie-chart" />
-                        <span>Option 2</span>
+                        <span>抽奖</span>
                     </Menu.Item>
                     <SubMenu
                         key="sub1"

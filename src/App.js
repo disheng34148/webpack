@@ -1,6 +1,5 @@
 import { hot } from 'react-hot-loader/root';
 import React, { Component } from 'react';
-import '@style/reset.scss';
 import Header from '@com/Header';
 import MenuLeft from '@com/MenuLeft';
 import Content from './Content';
