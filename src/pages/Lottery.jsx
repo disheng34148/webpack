@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import drawBtn from '@/btn.png';
+import lotteryBtn from '@/btn.png';
 import '@style/lottery.scss';
 import {Modal} from 'antd';
 
-class List extends Component {
+class Lottery extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -71,10 +71,10 @@ class List extends Component {
                         )
                     })
                 }</ul>
-                <img src={drawBtn} onClick={() => this.start()} />
+                <img src={lotteryBtn} onClick={() => this.start()} />
             </div>
         );
     }
 }
 
-export default List;
+export default Lottery;

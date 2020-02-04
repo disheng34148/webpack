@@ -21,21 +21,21 @@ class MenuLeft extends Component {
                         <Icon type="pie-chart" />
                         <span>会员</span>
                     </Menu.Item>
-                    <Menu.Item key="2" path="/lottery">
+                    <Menu.Item key="2" path="/">
                         <Icon type="pie-chart" />
-                        <span>抽奖</span>
+                        <span>哈哈</span>
                     </Menu.Item>
                     <SubMenu
                         key="sub1"
                         title={
                             <span>
                                 <Icon type="mail" />
-                                <span>Navigation One</span>
+                                <span>抽奖</span>
                             </span>
                         }
                     >
-                        <Menu.Item key="5">Option 5</Menu.Item>
-                        <Menu.Item key="6">Option 6</Menu.Item>
+                        <Menu.Item key="5" path="/lottery">大转盘</Menu.Item>
+                        <Menu.Item key="6" path="/fruit">水果机</Menu.Item>
                         <Menu.Item key="7">Option 7</Menu.Item>
                         <Menu.Item key="8">Option 8</Menu.Item>
                     </SubMenu>
