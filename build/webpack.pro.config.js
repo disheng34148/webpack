@@ -54,6 +54,12 @@ const webpackConfig = merge(base, {
                     test: /[\\/]node_modules[\\/](antd)[\\/]/,
                     chunks: 'all',
                     priority: 11
+                },
+                cryptoJs: {
+                    name: 'crypto-js',
+                    test: /[\\/]node_modules[\\/](crypto-js)[\\/]/,
+                    chunks: 'all',
+                    priority: 11
                 }
             }
         }
