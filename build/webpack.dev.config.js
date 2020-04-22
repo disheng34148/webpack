@@ -12,6 +12,7 @@ module.exports = merge(base, {
     mode: 'development',
     devtool: 'cheap-module-eval-source-map',
     devServer: {
+        allowedHosts: ['cimu34148.cn','127.0.0.1'],
         contentBase: resolve('../dist'),
         open: true,
         port: 8080,

@@ -35,7 +35,7 @@ class MenuLeft extends Component {
                         }
                     >
                         <Menu.Item key="5" path="/lottery">大转盘</Menu.Item>
-                        <Menu.Item key="6" path="/fruit">水果机</Menu.Item>
+                        <Menu.Item key="6" path="/wechat">微信</Menu.Item>
                         <Menu.Item key="7">Option 7</Menu.Item>
                         <Menu.Item key="8">Option 8</Menu.Item>
                     </SubMenu>

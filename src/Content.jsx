@@ -3,7 +3,7 @@ import { HashRouter as Router, Route, Switch} from 'react-router-dom';
 // import loadable from './util/loadable';
 import Vip from './pages/Vip';
 import Lottery from './pages/Lottery';
-import Fruit from './pages/Fruit';
+import Wechat from './pages/Wechat';
 
 class Content extends Component {
     render() {
@@ -13,7 +13,7 @@ class Content extends Component {
                     <Switch>
                         <Route path="/vip" component={Vip}></Route>
                         <Route path="/lottery" component={Lottery}></Route>
-                        <Route path="/fruit" component={Fruit}></Route>
+                        <Route path="/wechat" component={Wechat}></Route>
                     </Switch>
                 </Router>
             </div>
