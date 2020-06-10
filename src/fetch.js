@@ -6,7 +6,8 @@ window.$http = (url, data=null) => {
             body: data,
             headers: {
                 'content-type': 'application/json'
-            }
+            },
+            mode: 'no-cors'
         })
         .then(res => res.json())
         .then(json => {

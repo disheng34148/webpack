@@ -10,6 +10,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');//
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');// 显示打包时间
 const TerserPlugin = require('terser-webpack-plugin');
 const lodashWebpackPlugin = require('lodash-webpack-plugin');// 去除未使用的lodash代码
+const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin");// 捆绑包包含同一软件包的多个版本时，会发出警告
 
 const webpackConfig = merge(base, {
     mode: 'production',
@@ -23,7 +24,8 @@ const webpackConfig = merge(base, {
         new OptimizeCssAssetsPlugin(),
         // IgnorePlugin可以忽略第三方库的某个目录下的内容
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),// 忽略moment的locale(语言包)目录下的内容, 减小打包体积
-        new ProgressBarPlugin()
+        new ProgressBarPlugin(),
+        new DuplicatePackageCheckerPlugin()
     ],
     optimization: {
         minimizer: [

@@ -1,0 +1,31 @@
+#canvas {
+    box-sizing: border-box;
+}
+div {
+    width: 100vh;
+    height: 100vw;
+    transform: rotate(90deg);
+    transform-origin: calc(100vw / 2);
+}
+#clear {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    background: lightskyblue;
+    color: #fff;
+    width: 80px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+#download {
+    position: fixed;
+    right: 82px;
+    bottom: 0;
+    background: lightskyblue;
+    color: #fff;
+    width: 80px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
