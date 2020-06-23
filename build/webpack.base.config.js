@@ -103,6 +103,9 @@ module.exports = {
         },{
             from: resolve('../static'),// 想不被webpack打包js、css文件要在html里引入，图片不能使用require方式引入
             to: resolve('../dist/static')// 路径要用 /static/**
+        },{
+            from: resolve('../static/MP_verify_PKdeC4rMtn6iwnvB.txt'),// 想不被webpack打包js、css文件要在html里引入，图片不能使用require方式引入
+            to: resolve('../dist')// 路径要用 /static/**
         }]),
     ]
 }
