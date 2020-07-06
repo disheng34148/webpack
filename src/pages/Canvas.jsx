@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-// import '../style/canvas.scss'
+import '@style/canvas.scss'
 
 export default class Canvas extends Component {
-    constructor() {
+    constructor(props) {
+        super(props)
         this.state = {
             ctx: null,
             x: 0,
@@ -81,7 +82,7 @@ export default class Canvas extends Component {
 
     render() {
         return (
-            <div id="box">
+            <div id="canvas-box">
                 <canvas id="canvas" onTouchStart={() => this.start} onTouchEnd={() => this.end} onTouchMove={() => this.move}></canvas>
                 <button onClick={() => this.clear} id="clear">重写</button>
                 <button onClick={() => this.download} id="download">下载</button>

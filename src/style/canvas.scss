@@ -1,11 +1,11 @@
-#canvas {
-    box-sizing: border-box;
-}
-div {
+#canvas-box {
     width: 100vh;
     height: 100vw;
     transform: rotate(90deg);
     transform-origin: calc(100vw / 2);
+    #canvas {
+        box-sizing: border-box;
+    }
 }
 #clear {
     position: fixed;
