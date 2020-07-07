@@ -14,6 +14,12 @@ const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack
 
 const webpackConfig = merge(base, {
     mode: 'production',
+    // externals里面库不打包
+    externals: {
+        'react': 'React',
+        'react-dom': 'ReactDOM',
+        'react-router-dom': 'ReactRouterDOM'
+    },
     plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({

@@ -7,6 +7,9 @@ export default class Wechat extends Component {
         this.state = {src: ''}
     }
     componentDidMount() {
+        const wechatjsdk = document.createElement('script')
+        wechatjsdk.setAttribute('src', 'https://res.wx.qq.com/open/js/jweixin-1.6.0.js')
+        document.body.appendChild(wechatjsdk)
         const url = window.location.href.split('#')[0];
         fetch(`https://www.cimu34148.cn:8443/wechat?url=${url}`)
         .then(res => res.json())

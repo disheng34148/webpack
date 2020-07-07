@@ -33,8 +33,8 @@ Header.propTypes = {
 const headerStyle = {
     'background': '#1890ff',
     'display': 'flex',
-    'align-items': 'center',
-    'justify-content': 'space-between',
+    'alignItems': 'center',
+    'justifyContent': 'space-between',
     'padding': '10px 20px'
 }
 

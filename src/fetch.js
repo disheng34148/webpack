@@ -7,7 +7,7 @@ window.$http = (url, data=null) => {
             headers: {
                 'content-type': 'application/json'
             },
-            mode: 'no-cors'
+            // mode: 'no-cors'
         })
         .then(res => res.json())
         .then(json => {

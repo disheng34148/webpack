@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import '@style/canvas.scss'
 
 export default class Canvas extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
         this.state = {
             ctx: null,
             x: 0,

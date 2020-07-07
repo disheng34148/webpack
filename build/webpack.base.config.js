@@ -15,12 +15,6 @@ module.exports = {
         chunkFilename: 'chunks/[name].[chunkhash:8].js',
         path: resolve('../dist'),
     },
-    // externals里面库不打包
-    externals: {
-        'react': 'React',
-        'react-dom': 'ReactDOM',
-        'react-router-dom': 'ReactRouterDOM'
-    },
     resolve: {
         extensions: ['.js', '.jsx'],
         alias: {
